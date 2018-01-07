@@ -16,7 +16,7 @@
   document.getElementById("canvas").style.width = window.innerWidth;
   document.getElementById("canvas").style.height = window.innerHeight - 120;
 
-  document.getElementById("clickity")[0].addEventListener("click", function() {
+  document.getElementById("clickity").addEventListener("click", function() {
     ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
     
     for (let item of JSON.parse(document.getElementById("json").value).reverse()) {
