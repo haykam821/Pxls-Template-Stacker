@@ -3,6 +3,7 @@
 
 <script>
   let ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
+  let images = {};
   
   document.body.style.margin = 0;
   document.body.style.padding = 0;
@@ -12,7 +13,17 @@
   document.getElementsByTagName("canvas")[0].style.width = window.innerWidth;
   document.getElementsByTagName("canvas")[0].style.height = window.innerHeight - 120;
 
-  for (let item of JSON.parse(document.getElementsByTagName("input")[0].value)) {
-    ctx.drawImage()
-  }
+  document.getElementsByTagName("textarea")[0].addEventListener("change", function() {
+    for (let item of JSON.parse(document.getElementsByTagName("input")[0].value).reverse()) {
+      if (images[item.url]) {
+          images[item.url] = new Image();
+        
+          images[item.url].onload = function() {
+            ctx.drawImage(images[item.url], item.x, item.y);
+          }
+      } else {
+        ctx.drawImage(images[item.url], item.x, item.y);
+      }
+    }
+  });
 </script>
