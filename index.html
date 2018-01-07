@@ -15,8 +15,9 @@
 
   document.getElementsByTagName("textarea")[0].addEventListener("change", function() {
     for (let item of JSON.parse(document.getElementsByTagName("textarea")[0].value).reverse()) {
-      if (images[item.url]) {
+      if (!images[item.url]) {
           images[item.url] = new Image();
+          images[item.url].src = item.url;
         
           images[item.url].onload = function() {
             ctx.drawImage(images[item.url], item.x, item.y);
