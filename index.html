@@ -14,7 +14,7 @@
   document.getElementsByTagName("canvas")[0].style.height = window.innerHeight - 120;
 
   document.getElementsByTagName("textarea")[0].addEventListener("change", function() {
-    for (let item of JSON.parse(document.getElementsByTagName("input")[0].value).reverse()) {
+    for (let item of JSON.parse(document.getElementsByTagName("textarea")[0].value).reverse()) {
       if (images[item.url]) {
           images[item.url] = new Image();
         
