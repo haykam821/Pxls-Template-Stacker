@@ -4,6 +4,9 @@
 <script>
   let ctx = document.getElementsByTagName("canvas")[0].getContext("2d");
   
+  document.body.style.margin = 0;
+  document.body.style.padding = 0;
+  
   document.getElementsByTagName("input")[0].value = JSON.stringify([{"image": "http://file/to/url.png","x": 500,"y": 500},{"image": "http://file/to/url.jpg","x": 842,"y": 184}]);
   
   document.getElementsByTagName("canvas")[0].style.width = window.innerWidth;
