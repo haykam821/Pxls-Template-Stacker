@@ -1,50 +1,53 @@
-<html><head>
-    <title>Pxls Template Stacker</title>
-      </head>
+<html>
+
+<head>
+	<title>Pxls Template Stacker</title>
+</head>
 
 <body>
-    <canvas width="1000px" height="1000px" id="canvas">Use latest Chrome pls</canvas>
-    <div style="display: flex; margin:  0 3px;" id="uiBotWrapper">
-        <textarea style="flex: 1 0 auto;" id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
-        <textarea style="flex: 1 0 auto;" id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
-        <button style="flex: 0 1 auto;" id="clickity">Generate</button>
-    </div>
+	<canvas width="1000px" height="1000px" id="canvas">Use latest Chrome pls</canvas>
+	<div style="display: flex; margin:  0 3px;" id="uiBotWrapper">
+		<textarea style="flex: 1 0 auto;" id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
+		<textarea style="flex: 1 0 auto;" id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
+		<button style="flex: 0 1 auto;" id="clickity">Generate</button>
+	</div>
+	<script>
+		let ctx = document.getElementById("canvas").getContext("2d");
+		          let images = {};
+		    
+		          if (localStorage && localStorage.savedJSON) {
+		              document.getElementById("json").value = localStorage.savedJSON;
+		          } else {
+		              document.getElementById("json").value = JSON.stringify([{"url": "http://file/to/url.png","x": 500,"y": 500},{"url": "http://file/to/url.jpg","x": 842,"y": 184}]);
+		          }
+		    
+		          document.body.style.margin = 0;
+		          document.body.style.padding = 0;
+		          document.getElementsByTagName("html")[0].style.overflow = "hidden";
+		    
+		          document.getElementById("canvas").style.width = window.innerWidth;
+		          document.getElementById("canvas").style.height = window.innerHeight - 120;
+		          document.getElementById("uiBotWrapper").style.height = `calc(100% - ${window.innerHeight - 120}px`;
+		    
+		          document.getElementById("clickity").addEventListener("click", function() {
+		            localStorage.savedJSON = document.getElementById("json").value;
+		    
+		            ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
+		    
+		            for (let item of JSON.parse(document.getElementById("json").value).reverse()) {
+		              if (!images[item.url]) {
+		                  images[item.url] = new Image();
+		                  images[item.url].src = item.url;
+		    
+		                  images[item.url].onload = function() {
+		                    ctx.drawImage(images[item.url], item.x, item.y);
+		                  }
+		              } else {
+		                ctx.drawImage(images[item.url], item.x, item.y);
+		              }
+		            }
+		          });
+	</script>
+</body>
 
-    <script>
-      let ctx = document.getElementById("canvas").getContext("2d");
-      let images = {};
-
-      if (localStorage && localStorage.savedJSON) {
-          document.getElementById("json").value = localStorage.savedJSON;
-      } else {
-          document.getElementById("json").value = JSON.stringify([{"url": "http://file/to/url.png","x": 500,"y": 500},{"url": "http://file/to/url.jpg","x": 842,"y": 184}]);
-      }
-
-      document.body.style.margin = 0;
-      document.body.style.padding = 0;
-      document.getElementsByTagName("html")[0].style.overflow = "hidden";
-
-      document.getElementById("canvas").style.width = window.innerWidth;
-      document.getElementById("canvas").style.height = window.innerHeight - 120;
-      document.getElementById("uiBotWrapper").style.height = `calc(100% - ${window.innerHeight - 120}px`;
-
-      document.getElementById("clickity").addEventListener("click", function() {
-        localStorage.savedJSON = document.getElementById("json").value;
-
-        ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
-
-        for (let item of JSON.parse(document.getElementById("json").value).reverse()) {
-          if (!images[item.url]) {
-              images[item.url] = new Image();
-              images[item.url].src = item.url;
-
-              images[item.url].onload = function() {
-                ctx.drawImage(images[item.url], item.x, item.y);
-              }
-          } else {
-            ctx.drawImage(images[item.url], item.x, item.y);
-          }
-        }
-      });
-    </script>
-    </body></html>
+</html>
