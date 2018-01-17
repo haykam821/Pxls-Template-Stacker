@@ -1,5 +1,6 @@
 let ctx = document.getElementById("canvas").getContext("2d");
 let images = {};
+let debugLabels = false;
 
 if (localStorage && localStorage.savedJSON) {
 	document.getElementById("json").value = localStorage.savedJSON;
@@ -24,6 +25,9 @@ document.getElementById("canvas").style.height = window.innerHeight - 120;
 document.getElementById("uiBotWrapper").style.height = `calc(100% - ${window.innerHeight - 120}px`;
 
 function drawThing(item) {
+	if (debugLabels) {
+		ctx.drawText(item.label, item.x, item.y);
+	}
 	ctx.drawImage(images[item.url], item.x, item.y);
 }
 
