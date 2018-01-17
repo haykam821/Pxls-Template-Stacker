@@ -26,7 +26,7 @@ document.getElementById("uiBotWrapper").style.height = `calc(100% - ${window.inn
 
 function drawThing(item) {
 	if (debugLabels) {
-		ctx.drawText(item.label, item.x, item.y);
+		ctx.fillText(item.label, item.x, item.y);
 	}
 	ctx.drawImage(images[item.url], item.x, item.y);
 }
