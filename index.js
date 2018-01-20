@@ -40,6 +40,7 @@ document.getElementById("clickity").addEventListener("click", function() {
 		if (!images[item.url]) {
 			images[item.url] = new Image();
 			images[item.url].src = item.url;
+			images[item.url].crossOrigin = "Anonymous";
 
 			images[item.url].onload = function() {
 				drawThing(item);
