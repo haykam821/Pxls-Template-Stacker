@@ -32,7 +32,10 @@ function drawThing(item) {
 }
 
 document.getElementById("clickity").addEventListener("click", function() {
-	localStorage.savedJSON = document.getElementById("json").value;
+	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, 2);
+	
+	document.getElementById("json").value = json;
+	localStorage.savedJSON = json;
 
 	ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
 
