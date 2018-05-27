@@ -13,7 +13,7 @@ if (localStorage && localStorage.savedJSON) {
 		"url": "http://file/to/url.jpg",
 		"x": 842,
 		"y": 184,
-	}]);
+	}], undefined, 4);
 }
 
 document.body.style.margin = 0;
@@ -32,7 +32,7 @@ function drawThing(item) {
 }
 
 document.getElementById("clickity").addEventListener("click", function() {
-	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, 2);
+	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, 4);
 
 	document.getElementById("json").value = json;
 	localStorage.savedJSON = json;
