@@ -50,4 +50,9 @@ function drawAll() {
 		}
 	}
 }
+
 document.getElementById("clickity").addEventListener("click", drawAll);
+document.getElementById("newtabity").addEventListener("click", () => {
+	drawAll();
+	alert(ctx.getImageData());
+});
