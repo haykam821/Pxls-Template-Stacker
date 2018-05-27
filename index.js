@@ -1,6 +1,6 @@
-let ctx = document.getElementById("canvas").getContext("2d");
-let images = {};
-let debugLabels = false;
+const ctx = document.getElementById("canvas").getContext("2d");
+const images = {};
+const debugLabels = false;
 
 if (localStorage && localStorage.savedJSON) {
 	document.getElementById("json").value = localStorage.savedJSON;
@@ -8,11 +8,11 @@ if (localStorage && localStorage.savedJSON) {
 	document.getElementById("json").value = JSON.stringify([{
 		"url": "http://file/to/url.png",
 		"x": 500,
-		"y": 500
+		"y": 500,
 	}, {
 		"url": "http://file/to/url.jpg",
 		"x": 842,
-		"y": 184
+		"y": 184,
 	}]);
 }
 
@@ -33,20 +33,20 @@ function drawThing(item) {
 
 document.getElementById("clickity").addEventListener("click", function() {
 	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, 2);
-	
+
 	document.getElementById("json").value = json;
 	localStorage.savedJSON = json;
 
 	ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
 
-	for (let item of JSON.parse(document.getElementById("json").value).reverse()) {
+	for (const item of JSON.parse(document.getElementById("json").value).reverse()) {
 		if (!images[item.url]) {
 			images[item.url] = new Image();
 			images[item.url].src = item.url;
 
 			images[item.url].onload = function() {
 				drawThing(item);
-			}
+			};
 		} else {
 			drawThing(item);
 		}
