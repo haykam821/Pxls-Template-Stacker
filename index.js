@@ -18,11 +18,9 @@ if (localStorage && localStorage.savedJSON) {
 
 document.body.style.margin = 0;
 document.body.style.padding = 0;
-document.getElementsByTagName("html")[0].style.overflow = "hidden";
 
 document.getElementById("canvas").style.width = window.innerWidth;
 document.getElementById("canvas").style.height = window.innerHeight - 120;
-document.getElementById("uiBotWrapper").style.height = `calc(100% - ${window.innerHeight - 120}px`;
 
 function drawThing(item) {
 	if (debugLabels) {
@@ -31,8 +29,8 @@ function drawThing(item) {
 	ctx.drawImage(images[item.url], item.x, item.y);
 }
 
-document.getElementById("clickity").addEventListener("click", function() {
-	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, 4);
+function drawAll() {
+	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, "\t");
 
 	document.getElementById("json").value = json;
 	localStorage.savedJSON = json;
@@ -51,4 +49,5 @@ document.getElementById("clickity").addEventListener("click", function() {
 			drawThing(item);
 		}
 	}
-});
+}
+document.getElementById("clickity").addEventListener("click", drawAll);
