@@ -5,18 +5,24 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="manifest" href="manifest.json">
 	<script src="index.js" defer></script>
-	
-	<img style="display: none;" src="https://pxlsfiddle.com/board" />
+	<link rel="stylesheet" href="index.css" />
+
+	<img class="preloader" src="https://pxlsfiddle.com/board" />
 </head>
 
 <body>
-<canvas style="background-size: cover;" width="1280px" height="720px" id="canvas">Use latest Chrome pls</canvas>
+	<div id="canvasWrap">
+		<canvas width="1280px" height="720px" id="canvas">
+			<p>Use latest Chrome pls</p>
+		</canvas>
+	</div>
 	<div id="uiBotWrapper">
 		<textarea id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
 		<textarea id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
 		<button id="clickity">Generate</button>
 		<button id="newtabity">Open in Pxls</button>
-		<input type="checkbox" id="baseUnder"><label for="baseUnder">Show base canvas under</label>
+		<input type="checkbox" id="baseUnder">
+		<label for="baseUnder">Show base canvas under</label>
 	</div>
 </body>
 

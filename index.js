@@ -16,9 +16,6 @@ if (localStorage && localStorage.savedJSON) {
 	}], undefined, 4);
 }
 
-document.body.style.margin = 0;
-document.body.style.padding = 0;
-
 document.getElementById("canvas").style.width = window.innerWidth;
 document.getElementById("canvas").style.height = window.innerHeight - 120;
 
