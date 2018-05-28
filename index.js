@@ -54,5 +54,5 @@ function drawAll() {
 document.getElementById("clickity").addEventListener("click", drawAll);
 document.getElementById("newtabity").addEventListener("click", () => {
 	drawAll();
-	alert(ctx.getImageData());
+	document.location.href = `https://pxls.space/#template=${encodeURIComponent(document.getElementById("canvas").toDataURL())}&ox=0&oy=0`;
 });
