@@ -22,6 +22,11 @@ document.body.style.padding = 0;
 document.getElementById("canvas").style.width = window.innerWidth;
 document.getElementById("canvas").style.height = window.innerHeight - 120;
 
+const baseUnder = document.getElementById("baseUnder");
+baseUnder.addEventListener("input", (event) => {
+	document.getElementById("canvas").style.backgroundImage = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "";
+});
+
 function drawThing(item) {
 	if (debugLabels) {
 		ctx.fillText(item.label, item.x, item.y);
