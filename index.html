@@ -5,24 +5,42 @@
 	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="manifest" href="manifest.json">
 	<script src="index.js" defer></script>
-	<link rel="stylesheet" href="index.css" />
-
 	<img class="preloader" src="https://pxlsfiddle.com/board" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+	<link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-	<div id="canvasWrap">
-		<canvas width="1280px" height="720px" id="canvas">
-			<p>Use latest Chrome pls</p>
-		</canvas>
-	</div>
-	<div id="uiBotWrapper">
-		<textarea id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
-		<textarea id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
-		<button id="clickity">Generate</button>
-		<button id="newtabity">Open in Pxls</button>
-		<input type="checkbox" id="baseUnder">
-		<label for="baseUnder">Show base canvas under</label>
+	<div id="main" class="tile is-ancestor">
+		<div class="tile is-vertical is-parent">
+			<div class="tile is-child has-background-primary box">
+				<canvas width="1280" height="720" id="canvas"></canvas>
+			</div>
+		</div>
+		<div class="tile is-parent is-vertical">
+			<div class="tile is-child has-background-info box">
+				<textarea id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
+				<textarea class="textarea" id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
+				<button class="button" id="clickity">Generate</button>
+				<button class="button" id="newtabity">Open in Pxls</button>
+				<input class="checkbox" type="checkbox" id="baseUnder">
+				<label for="baseUnder">Show base canvas under</label>
+			</div>
+			<div class="tile is-child has-background-info box has-text-light has-text-centered">
+				<p>
+					This is available on GitHub under the MIT license.
+				</p>
+				<p>
+					To use this tool, simply add your JSON-formatted 'layers' as an array of objects with the
+					<code>x</code>,
+					<code>y</code>, and
+					<code>url</code> properties.
+				</p>
+			</div>
+		</div>
 	</div>
 </body>
 
