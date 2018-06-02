@@ -1,4 +1,6 @@
-const ctx = document.getElementById("canvas").getContext("2d");
+const can = document.getElementById("canvas");
+const ctx = can.getContext("2d");
+
 const images = {};
 const debugLabels = false;
 
@@ -24,11 +26,33 @@ baseUnder.addEventListener("input", (event) => {
 	document.getElementById("canvas").style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "white";
 });
 
-function drawThing(item) {
+const fallbackPos = 0;
+
+function drawThing(item, x = fallbackPos, y = fallbackPos) {
 	if (debugLabels) {
-		ctx.fillText(item.label, item.x, item.y);
+		ctx.fillText(item.label, x, y);
 	}
-	ctx.drawImage(images[item.url], item.x, item.y);
+	ctx.drawImage(images[item.url], x, y);
+}
+
+function calc(pos, height) {
+	const size = height ? can.height : can.width;
+
+	if (pos.toString().endsWith("%")) {
+		const percent = parseInt(pos.slice(0, -1));
+		if (isNaN(percent)) {
+			return fallbackPos;
+		} else {
+			return percent / 100 * size;
+		}
+	} else {
+		const newPos = parseInt(pos);
+		if (isNaN(newPos)) {
+			return fallbackPos;
+		} else {
+			return newPos;
+		}
+	}
 }
 
 function drawAll() {
@@ -45,10 +69,10 @@ function drawAll() {
 			images[item.url].src = item.url;
 
 			images[item.url].onload = function() {
-				drawThing(item);
+				drawThing(item, calc(item.x), calc(item.y, true));
 			};
 		} else {
-			drawThing(item);
+			drawThing(item, calc(item.x), calc(item.y, true));
 		}
 	}
 }
