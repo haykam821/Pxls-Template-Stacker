@@ -12,8 +12,5 @@
 
 body {
     padding: 15px;
-}
-
-body > * {
-    height: 100%;
+    background-color: #222222;
 }
