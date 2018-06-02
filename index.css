@@ -8,6 +8,7 @@
     height: auto;
     background: white;
     image-rendering: pixelated;
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 body {
