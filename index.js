@@ -22,7 +22,7 @@ if (localStorage && localStorage.savedJSON) {
 
 const baseUnder = document.getElementById("baseUnder");
 baseUnder.addEventListener("input", (event) => {
-	can.style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "white";
+	can.style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "rgba(0, 0, 0, 0.1)";
 });
 
 const fallbackPos = 0;
