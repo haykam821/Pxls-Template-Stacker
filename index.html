@@ -1,47 +1,63 @@
+<!DOCTYPE html>
 <html>
 
 <head>
 	<title>Pxls Template Stacker</title>
 	<link rel="shortcut icon" href="favicon.ico" />
-	<link rel="manifest" href="manifest.json">
+	<link rel="manifest" href="manifest.json" />
 	<script src="index.js" defer></script>
 	<img class="preloader" src="https://pxlsfiddle.com/board" />
 
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
 
 	<link rel="stylesheet" href="index.css" />
 </head>
 
 <body>
-	<div id="main" class="tile is-ancestor">
-		<div class="tile is-vertical is-parent">
-			<div class="tile is-child has-background-success box">
-				<canvas width="1280" height="720" id="canvas"></canvas>
+	<div id="main" class="container">
+		<div class="row">
+			<div class="col">
+				<div class="card col bg-dark">
+					<div class="card-body">
+						<canvas width="80" height="80" id="canvas"></canvas>
+					</div>
+				</div>
 			</div>
-		</div>
-		<div class="tile is-parent is-vertical">
-			<div class="tile is-child has-background-info box has-text-light has-text-centered">
-<h1 class="title has-text-light is-1">
-					Pxls Template Stacker
-				</h1>
-				<p>
-					This is available on GitHub under the MIT license.
-				</p>
-				<p>
-					To use this tool, simply add your JSON-formatted 'layers' as an array of objects with the
-					<code>x</code>,
-					<code>y</code>, and
-					<code>url</code> properties.
-				</p>
-			</div>
-			<div class="tile is-child has-background-primary box">
-				<textarea id="guiholder" placeholder="This will be a GUI soon, but it does nothing RN"></textarea>
-				<textarea class="textarea" id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
-				<button class="button" id="clickity">Generate</button>
-				<button class="button" id="newtabity">Open in Pxls</button>
-				<input class="checkbox" type="checkbox" id="baseUnder">
-				<label for="baseUnder">Show base canvas under</label>
+			<div class="col text-light">
+				<div class="card bg-dark">
+					<div class="card-body">
+						<h1 class="title has-text-light is-1">
+							Pxls Template Stacker
+						</h1>
+						<p>
+							This is available on GitHub under the MIT license.
+						</p>
+						<p>
+							To use this tool, simply add your JSON-formatted 'layers' as an array of objects with the
+							<code>x</code>,
+							<code>y</code>, and
+							<code>url</code> properties.
+						</p>
+					</div>
+				</div>
+				<br />
+				<div class="card bg-dark">
+					<div class="card-body">
+						<textarea class="form-control" rows="8" id="json" placeholder="JSON array of objects containing image URL, X offset, and Y offset"></textarea>
+						<br />
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input" id="baseUnder">
+							<label class="custom-control-label" for="baseUnder">Show base canvas under</label>
+						</div>
+						<br />
+						<button class="btn btn-primary btn-block" id="clickity">Generate</button>
+						<button class="btn btn-secondary btn-block" id="newtabity">Open in Pxls</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
