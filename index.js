@@ -56,7 +56,16 @@ function calc(pos, item, useMiddle, height) {
 		}
 	}
 
-	return position; /*- (useMiddle ? imgSize / 2 : 0)*/
+	return position; /* - (useMiddle ? imgSize / 2 : 0)*/
+}
+
+function isTainted() {
+	try {
+		ctx.getImageData(0, 0, 1, 1);
+		return false;
+	} catch (err) {
+		return err.code === 18;
+	}
 }
 
 function drawAll() {
@@ -79,10 +88,18 @@ function drawAll() {
 			};
 		}
 	}
+
+	document.getElementById("newtabity").disabled = isTainted();
 }
 
 document.getElementById("clickity").addEventListener("click", drawAll);
 document.getElementById("newtabity").addEventListener("click", () => {
 	drawAll();
-	document.location.href = `https://pxls.space/#template=${encodeURIComponent(document.getElementById("canvas").toDataURL())}&ox=0&oy=0`;
+	if (isTainted()) {
+		document.getElementById("newtabity").disabled = true;
+		alert("You used images from a site that does not allowed Cross-Origin Resource Sharing, so you cannot use this feature.");
+	} else {
+		document.getElementById("newtabity").disabled = false;
+		document.location.href = `https://pxls.space/#template=${encodeURIComponent(document.getElementById("canvas").toDataURL())}&ox=0&oy=0`;
+	}
 });
