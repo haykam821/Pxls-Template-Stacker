@@ -1,13 +1,15 @@
 const can = document.getElementById("canvas");
 const ctx = can.getContext("2d");
 
+const input = document.getElementById("json");
+
 const images = {};
 const debugLabels = false;
 
 if (localStorage && localStorage.savedJSON) {
-	document.getElementById("json").value = localStorage.savedJSON;
+	input.value = localStorage.savedJSON;
 } else {
-	document.getElementById("json").value = JSON.stringify([{
+	input.value = JSON.stringify([{
 		"url": "http://file/to/url.png",
 		"x": 500,
 		"y": 500,
@@ -18,12 +20,9 @@ if (localStorage && localStorage.savedJSON) {
 	}], undefined, 4);
 }
 
-/* document.getElementById("canvas").style.width = window.innerWidth;
-document.getElementById("canvas").style.height = window.innerHeight - 120;*/
-
 const baseUnder = document.getElementById("baseUnder");
 baseUnder.addEventListener("input", (event) => {
-	document.getElementById("canvas").style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "white";
+	can.style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "white";
 });
 
 const fallbackPos = 0;
@@ -56,14 +55,14 @@ function calc(pos, height) {
 }
 
 function drawAll() {
-	json = JSON.stringify(JSON.parse(document.getElementById("json").value), undefined, "\t");
+	json = JSON.stringify(JSON.parse(input.value), undefined, "\t");
 
-	document.getElementById("json").value = json;
+	input.value = json;
 	localStorage.savedJSON = json;
 
-	ctx.clearRect(0, 0, document.getElementById("canvas").width, document.getElementById("canvas").height);
+	ctx.clearRect(0, 0, can.width, can.height);
 
-	for (const item of JSON.parse(document.getElementById("json").value).reverse()) {
+	for (const item of JSON.parse(input.value).reverse()) {
 		if (!images[item.url]) {
 			images[item.url] = new Image();
 			images[item.url].src = item.url;
