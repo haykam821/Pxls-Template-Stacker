@@ -56,7 +56,7 @@ function calc(pos, item, useMiddle, height) {
 		}
 	}
 
-	return position - (useMiddle ? imgSize / 2 : 0);;
+	return position; /*- (useMiddle ? imgSize / 2 : 0)*/
 }
 
 function drawAll() {
