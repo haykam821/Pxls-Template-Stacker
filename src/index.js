@@ -1,6 +1,5 @@
 require("file-loader?name=[name].[ext]!html-minify-loader!./index.html");
 require("file-loader?name=[name].[ext]!./index.css");
-require("file-loader?name=[name].[ext]!./manifest.json");
 require("file-loader?name=[name].[ext]!./favicon.ico");
 
 
