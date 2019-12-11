@@ -16,23 +16,29 @@ if (localStorage && localStorage.savedJSON) {
 	input.value = localStorage.savedJSON;
 } else {
 	input.value = JSON.stringify([{
-		"url": "http://file/to/url.png",
-		"x": 500,
-		"y": 500,
+		url: "http://file/to/url.png",
+		x: 500,
+		y: 500,
 	}, {
-		"url": "http://file/to/url.jpg",
-		"x": 842,
-		"y": 184,
+		url: "http://file/to/url.jpg",
+		x: 842,
+		y: 184,
 	}], undefined, 4);
 }
 
 const baseUnder = document.getElementById("baseUnder");
-baseUnder.addEventListener("input", (event) => {
+baseUnder.addEventListener("input", event => {
 	can.style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "rgba(0, 0, 0, 0.1)";
 });
 
 const fallbackPos = 0;
 
+/**
+ * Draws an item to the canvas.
+ * @param {Object} item An item object.
+ * @param {number} [x] The position of the item.
+ * @param {number} [y] The position of the item.
+ */
 function drawThing(item, x = fallbackPos, y = fallbackPos) {
 	if (debugLabels) {
 		ctx.fillText(item.label, x, y);
@@ -40,9 +46,21 @@ function drawThing(item, x = fallbackPos, y = fallbackPos) {
 	ctx.drawImage(images[item.url], x, y);
 }
 
+/**
+ * Calculates a position.
+ * @param {(string|number)} pos The position, in percentage or pixels.
+ * @param {*} item The item to get the position of.
+ * @param {*} useMiddle Whether to anchor the item's position to its center.
+ * @param {*} height Whether the position being calculated is vertical or horizontal.
+ * @returns {number} The position.
+ */
 function calc(pos, item, useMiddle, height) {
 	const size = height ? can.height : can.width;
 	const imgSize = height ? images[item.url].height : images[item.url].width;
+
+	// TODO
+	imgSize;
+	useMiddle;
 
 	let position = fallbackPos;
 
@@ -62,18 +80,25 @@ function calc(pos, item, useMiddle, height) {
 		}
 	}
 
-	return position; /* - (useMiddle ? imgSize / 2 : 0)*/
+	return position;
 }
 
+/**
+ * Detects whether the canvas is tained.
+ * @returns {boolean} Whether the canvas is tainted.
+ */
 function isTainted() {
 	try {
 		ctx.getImageData(0, 0, 1, 1);
 		return false;
-	} catch (err) {
-		return err.code === 18;
+	} catch (error) {
+		return error.code === 18;
 	}
 }
 
+/**
+ * Draws all items to the canvas.
+ */
 function drawAll() {
 	const json = JSON.stringify(JSON.parse(input.value), undefined, "\t");
 
@@ -89,9 +114,9 @@ function drawAll() {
 			images[item.url] = new Image();
 			images[item.url].src = item.url;
 
-			images[item.url].onload = function() {
+			images[item.url].addEventListener("load", function() {
 				drawThing(item, calc(item.x, item, item.fromCenter), calc(item.y, item, item.fromCenter, true));
-			};
+			});
 		}
 	}
 
