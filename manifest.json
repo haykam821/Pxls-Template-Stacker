@@ -1,5 +1,7 @@
 {
-    "name": "Pxls Template Stacker",
-    "short_name": "Template Stacker",
-    "display": "standalone"
+  "name": "Pxls Template Stacker",
+  "short_name": "Template Stacker",
+  "orientation": "portrait",
+  "display": "standalone",
+  "start_url": "."
 }
