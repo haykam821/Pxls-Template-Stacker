@@ -1,7 +1,7 @@
 {
 	"scripts": {
 		"build": "webpack --config webpack.config.js",
-		"lint": "eslint \"./**/*.js\""
+		"lint": "eslint \"./**/*.js\" --ignore-path .gitignore"
 	},
 	"devDependencies": {
 		"eslint": "^6.7.2",
