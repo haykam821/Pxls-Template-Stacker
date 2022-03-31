@@ -30,6 +30,12 @@ baseUnder.addEventListener("input", event => {
 	can.style.background = event.target.checked ? "url('https://pxlsfiddle.com/board')" : "rgba(0, 0, 0, 0.1)";
 });
 
+const canvasWidth = document.getElementById("canvasWidth");
+canvasWidth.value = can.width;
+
+const canvasHeight = document.getElementById("canvasHeight");
+canvasHeight.value = can.height;
+
 const fallbackPos = 0;
 
 /**
@@ -99,6 +105,9 @@ function isTainted() {
  * Draws all items to the canvas.
  */
 function drawAll() {
+	can.width = canvasWidth.value;
+	can.height = canvasHeight.value;
+
 	const json = JSON.stringify(JSON.parse(input.value), undefined, "\t");
 
 	input.value = json;
