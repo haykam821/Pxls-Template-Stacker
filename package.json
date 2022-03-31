@@ -4,8 +4,8 @@
 		"lint": "eslint \"./**/*.js\" --ignore-path .gitignore"
 	},
 	"devDependencies": {
-		"eslint": "^8.9.0",
-		"eslint-config-haykam": "^1.15.0",
+		"eslint": "^8.12.0",
+		"eslint-config-haykam": "^1.16.1",
 		"file-loader": "^5.0.2",
 		"html-minify-loader": "^1.4.0",
 		"webpack": "^4.41.2",
