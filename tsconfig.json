@@ -1,0 +1,22 @@
+{
+	"compilerOptions": {
+		"downlevelIteration": true,
+		"esModuleInterop": true,
+		"lib": [
+			"es2021",
+			"dom"
+		],
+		"module": "commonjs",
+		"moduleResolution": "node",
+		"noImplicitAny": true,
+		"outDir": "./dist",
+		"resolveJsonModule": true,
+		"rootDir": "./src",
+		"skipLibCheck": true,
+		"strict": true,
+		"target": "es2015",
+		"types": [
+			"@types/webpack"
+		]
+	}
+}
